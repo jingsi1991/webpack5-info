@@ -1,0 +1,23 @@
+{
+  "id": "4261159",
+  "name": "rtc-web",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "rtc通话功能项目",
+  "glyphs": [
+    {
+      "icon_id": "31058193",
+      "name": "刷新-line",
+      "font_class": "shuaxin-line",
+      "unicode": "e800",
+      "unicode_decimal": 59392
+    },
+    {
+      "icon_id": "31059332",
+      "name": "复制-line",
+      "font_class": "fuzhi-line",
+      "unicode": "e831",
+      "unicode_decimal": 59441
+    }
+  ]
+}
