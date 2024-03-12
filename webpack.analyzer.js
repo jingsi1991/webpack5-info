@@ -2,20 +2,11 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
-const TerserPlugin = require("terser-webpack-plugin");
-const {PurgeCSSPlugin} = require("purgecss-webpack-plugin");
-const glob = require("glob");
-
-const BundleAnalyzerPlugin =
-  require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 const isDev = process.env.NODE_ENV === "dev";
 console.log("process.env.NODE_ENV", process.env.NODE_ENV);
 const resolve = (dir) => path.join(__dirname, dir);
-const PATHS = {
-  src: resolve("src"),
-};
 
 const config = {
   entry: "./src/index.js",
@@ -29,20 +20,20 @@ const config = {
     rules: [
       {
         test: /\.js$/i,
-        include: resolve("src"),
+        include: resolve('src'),
         exclude: /node_modules/,
         use: [
           {
-            loader: "thread-loader", // 开启多进程打包
+            loader: 'thread-loader', // 开启多进程打包
             options: {
               worker: 3,
-            },
+            }
           },
           {
             loader: "babel-loader",
             options: {
               presets: ["@babel/preset-env"],
-              cacheDirectory: true,
+              cacheDirectory: true
             },
           },
         ],
@@ -94,19 +85,12 @@ const config = {
     extensions: [".js", ".json"],
     modules: ["node_modules"],
   },
-  resolveLoader: {
-    modules: ["node_modules"],
-  },
-  optimization: {
-    minimize: true,
-    minimizer: ["...", new CssMinimizerPlugin(), new TerserPlugin({})],
+  resolveLoader:{
+    modules: ['node_modules']
   },
   plugins: [
     new MiniCssExtractPlugin({
       filename: "[name].[contenthash:8].css",
-    }),
-    new PurgeCSSPlugin({
-      paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true }),
     }),
     new HtmlWebpackPlugin({
       template: "./src/index.html",
@@ -115,7 +99,7 @@ const config = {
     new BundleAnalyzerPlugin({
       // analyzerMode: 'disabled',  // 不启动展示打包报告的http服务器
       generateStatsFile: true, // 是否生成stats.json文件
-    }),
+    })
   ],
 };
 

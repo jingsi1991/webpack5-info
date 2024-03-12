@@ -9,6 +9,7 @@ module.exports = {
     [
       "@babel/preset-env",
       {
+        module: false,
         useBuiltIns: "entry",
         corejs: "3.9.1", // 是 core-js 版本号
         targets: {
@@ -17,5 +18,9 @@ module.exports = {
         },
       }
     ]
-  ]
+  ],
+  // plugins: [    
+  //   ["@babel/plugin-proposal-decorators", { legacy: true }],
+  //   ["@babel/plugin-proposal-class-properties", { loose: true }],
+  // ]
 }
